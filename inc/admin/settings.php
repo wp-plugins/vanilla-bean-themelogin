@@ -109,10 +109,10 @@ function vbean_rendersettings(){
 
 <pre>
     <?php 
-    echo get_stylesheet_directory_uri();
-    echo PHP_EOL;
-        $theme = get_theme_root_uri();
-        var_dump($theme);
+//    echo get_stylesheet_directory_uri();
+//    echo PHP_EOL;
+//        $theme = get_theme_root_uri();
+//        var_dump($theme);
     
     ?>
     
