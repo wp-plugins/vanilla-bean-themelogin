@@ -50,7 +50,7 @@ function vbean_rendersettings(){
 
 
         <div class="wrap">
-        <h2>Vanilla Bean Error Mailer Settings</h2>
+        <h2>Vanilla Bean Custom Login Settings</h2>
             <form method="post" action="options.php">
     <?php settings_fields( 'vbean-themelogin-settings' ); ?>
     <?php do_settings_sections( 'vbean-themelogin-settings' ); ?>
