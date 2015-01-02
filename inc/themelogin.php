@@ -1,14 +1,4 @@
 <?php
-/*
-Plugin Name: themelogin
-Plugin URI: http://www.velvary.com.au/vanilla-beans/wordpress/
-Description: 
-Version: 1.0.0
-Author: Mark Pottie <mark@velvary.com.au>
-Author URI: http://www.velvary.com.au
-License: GPLv2
-*/
-
 /* 
 Copyright (C) Error: on line 4, column 33 in Templates/Licenses/license-wp-gpl20.txt
 The string doesn't match the expected date/time format. The string to parse was: "31/12/2014". The expected format was: "MMM d, yyyy". Velvary Pty Ltd

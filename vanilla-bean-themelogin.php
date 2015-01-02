@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: vanilla-bean-themelogin
-Plugin URI: 
-Description: 
-Version: 1.0.0
-Author:
-Author URI: 
+Plugin Name: themelogin
+Plugin URI: http://www.velvary.com.au/vanilla-beans/wordpress/theme-login/
+Description: Provides easy access to change your login screen layout and logo
+Version: 1.01
+Author: Mark Pottie <mark@velvary.com.au>
+Author URI: http://www.velvary.com.au
 License: GPLv2
 */
 
