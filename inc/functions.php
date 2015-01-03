@@ -19,6 +19,18 @@
 // upgrade plan to provide autocomplete
 namespace VanillaBeans;
 
+
+if(function_exists('\VanillaBeans\vanillabeans_settings')){
+  return  ;
+}else{
+    function vanillabeans_settings() {
+
+    }
+}
+
+
+
+
 if(function_exists('VanillaBeans\vbean_ListPhp')) {
 return;}else{
     function vbean_ListPhp($dir, $prefix = '') {
