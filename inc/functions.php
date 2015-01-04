@@ -19,11 +19,51 @@
 // upgrade plan to provide autocomplete
 namespace VanillaBeans;
 
-
 if(function_exists('\VanillaBeans\vanillabeans_settings')){
   return  ;
 }else{
     function vanillabeans_settings() {
+        ?>
+<style>
+    .addendum{
+        
+    }
+</style>
+<div class="wrap">
+<h2>Vanilla Beans for Wordpress</h2>
+<p>Vanilla Beans are part of Velvary's ever evolving library of plugins and modules for Wordpress and other Open Source Web Applications.</p>
+<p>Created with the simplistic yet tasty vanilla approach, our beans are here to help the creative concentrate on creative, and the technical people minimize the mundane.  </p>
+<ul>
+    <li>
+    <?php if(defined( 'VBEANERRORMAILER_PLUGIN_VERSION' )){ 
+        echo('<a href="'.admin_url().'admin.php?page='.VBEANERRORMAILER_PLUGIN_DIR.'/'.VBEANERRORMAILER_PLUGIN_FILE.'">Error Mailer</a> (installed)');
+    }else{
+        echo('<a href="'.admin_url().'plugin-install.php?tab=search&type=term&s=vanilla+bean+error+mailer">Error Mailer</a>');
+        
+    }?>
+        <div class="small-text">Facilitates email notification of php errors on your site. Configurable to avoid unnecessary spamming of known errors.</div>
+    </li>
+    <li>
+    <?php if(defined( 'VBEANTHEMELOGIN_PLUGIN_VERSION' )){ 
+        echo('<a href="'.admin_url().'admin.php?page='.VBEANTHEMELOGIN_PLUGIN_DIR.'/'.VBEANTHEMELOGIN_PLUGIN_FILE.'">Theme Login</a> (installed)');
+        }else {
+        echo('<a href="'.admin_url().'plugin-install.php?tab=search&type=term&s=vanilla+bean+theme+login">Theme Login</a>');
+     }?>
+        <div class="small-text">Themify your login and password recovery pages.</div>
+    </li>
+    <li>
+    <?php if(defined( 'VBEANICONSETTER_PLUGIN_VERSION' )){ 
+       echo('<a href="'.admin_url().'admin.php?page='.VBEANICONSETTER_PLUGIN_DIR.'/'.VBEANICONSETTER_PLUGIN_FILE.'">Icon Setter</a> (installed)');
+    }else {
+        echo('<a href="'.admin_url().'plugin-install.php?tab=search&type=term&s=vanilla+bean+icon+setter">Icon Setter</a>');
+     }?>
+        <div class="small-text">Add your site's icon to each page, and across all devices.</div>
+
+    </li>
+</ul>
+
+</div>
+            <?php
 
     }
 }
@@ -31,7 +71,7 @@ if(function_exists('\VanillaBeans\vanillabeans_settings')){
 
 
 
-if(function_exists('VanillaBeans\vbean_ListPhp')) {
+if(function_exists('\VanillaBeans\vbean_ListPhp')) {
 return;}else{
     function vbean_ListPhp($dir, $prefix = '') {
         $dir = rtrim($dir, '\\/');
@@ -59,7 +99,7 @@ return;}else{
     }
 }
 
-if(!function_exists('VanillaBeans\vbean_endsWith')) {
+if(!function_exists('\VanillaBeans\vbean_endsWith')) {
     function vbean_endsWith($haystack, $needle) {
     // search forward starting from end minus needle length characters
     $lcneedle = strtolower($needle);
@@ -69,7 +109,7 @@ if(!function_exists('VanillaBeans\vbean_endsWith')) {
 }
 }
 
-if(!function_exists('VanillaBeans\vbean_startsWith')) {
+if(!function_exists('\VanillaBeans\vbean_startsWith')) {
     function vbean_startsWith($haystack, $needle) {
         // search backwards starting from haystack length characters from the end
         $lcneedle = strtolower($needle);
@@ -79,7 +119,9 @@ if(!function_exists('VanillaBeans\vbean_startsWith')) {
 }
 
 
-if(!function_exists('VanillaBeans\vbean_setting')){
+
+
+if(!function_exists('\VanillaBeans\vbean_setting')){
     // returns a default val if get_option is empty
     function vbean_setting($name,$default){
         $sval = get_option($name);
@@ -91,7 +133,7 @@ if(!function_exists('VanillaBeans\vbean_setting')){
     }
 }
 
-if(!function_exists('VanillaBeans\vbean_setting')){
+if(!function_exists('\VanillaBeans\vbean_setting')){
     // returns default if get_option not set, but returns empty if get_option is empty
     function vbean_textsetting($name,$default){
         $sval = get_option($name);

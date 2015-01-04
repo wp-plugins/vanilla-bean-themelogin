@@ -71,11 +71,11 @@ function vbean_rendersettings(){
                     </tr>
 
                     <tr valign="top">
-                            <td>Upload Image</td>
+                            <td>Logo</td>
                             <td><label for="upload_image">
                                     <input id="vbean_themelogin_logo" type="text" size="36" name="vbean_themelogin_logo" value="<?php echo  \VanillaBeans\vbean_setting('vbean_themelogin_logo',''); ?>" />
-                                    <input id="upload_image_button" type="button" value="Upload Image" />
-                                    <br />Enter an URL or upload an image for the banner.
+                                    <input id="upload_image_button" type="button" value="Choose Logo" />
+                                    <br />Enter an URL or upload an image for the banner Logo.
                                     </label>
                             </td>
                     </tr>                
