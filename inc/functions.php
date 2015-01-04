@@ -51,7 +51,7 @@ if(function_exists('\VanillaBeans\vanillabeans_settings')){
      }?>
         <div class="small-text">Themify your login and password recovery pages.</div>
     </li>
-    <li>
+<!--    <li>
     <?php if(defined( 'VBEANICONSETTER_PLUGIN_VERSION' )){ 
        echo('<a href="'.admin_url().'admin.php?page='.VBEANICONSETTER_PLUGIN_DIR.'/'.VBEANICONSETTER_PLUGIN_FILE.'">Icon Setter</a> (installed)');
     }else {
@@ -59,7 +59,7 @@ if(function_exists('\VanillaBeans\vanillabeans_settings')){
      }?>
         <div class="small-text">Add your site's icon to each page, and across all devices.</div>
 
-    </li>
+    </li>-->
 </ul>
 
 </div>
@@ -102,18 +102,18 @@ return;}else{
 if(!function_exists('\VanillaBeans\vbean_endsWith')) {
     function vbean_endsWith($haystack, $needle) {
     // search forward starting from end minus needle length characters
-    $lcneedle = strtolower($needle);
-    $lchaystack = strtolower($haystack);
+    $lcneedle = strtolower($needle).'';
+    $lchaystack = strtolower($haystack).'';
             
-    return $lcneedle === "" || strpos($lchaystack, $lcneedle, strlen($lchaystack) - strlen($lcneedle)) !== FALSE;
+    return $lcneedle === "" || strpos($lchaystack, $lcneedle, (strlen($lchaystack) - strlen($lcneedle))) !== FALSE;
 }
 }
 
 if(!function_exists('\VanillaBeans\vbean_startsWith')) {
     function vbean_startsWith($haystack, $needle) {
         // search backwards starting from haystack length characters from the end
-        $lcneedle = strtolower($needle);
-        $lchaystack = strtolower($haystack);
+        $lcneedle = strtolower($needle).'';
+        $lchaystack = strtolower($haystack).'';
     return $lcneedle === "" || strrpos($lchaystack, $lcneedle, -strlen($lchaystack)) !== FALSE;
     }
 }
