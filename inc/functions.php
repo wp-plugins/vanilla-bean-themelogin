@@ -102,10 +102,14 @@ return;}else{
 if(!function_exists('\VanillaBeans\vbean_endsWith')) {
     function vbean_endsWith($haystack, $needle) {
     // search forward starting from end minus needle length characters
-    $lcneedle = strtolower($needle).'';
-    $lchaystack = strtolower($haystack).'';
+    $lcneedle = strtolower($needle.'');
+    $lchaystack = strtolower($haystack.'');
+    $startindex = strlen($lchaystack) - strlen($lcneedle);
+    if($startindex<0 || $startindex>=  strlen($lchaystack)){
+        return false;
+    }
             
-    return $lcneedle === "" || strpos($lchaystack, $lcneedle, (strlen($lchaystack) - strlen($lcneedle))) !== FALSE;
+    return $lcneedle === "" || strpos($lchaystack, $lcneedle, $startindex) !== FALSE;
 }
 }
 
@@ -114,7 +118,7 @@ if(!function_exists('\VanillaBeans\vbean_startsWith')) {
         // search backwards starting from haystack length characters from the end
         $lcneedle = strtolower($needle).'';
         $lchaystack = strtolower($haystack).'';
-    return $lcneedle === "" || strrpos($lchaystack, $lcneedle, -strlen($lchaystack)) !== FALSE;
+    return $lcneedle === "" || strrpos($lchaystack, $lcneedle, 0) !== FALSE;
     }
 }
 
