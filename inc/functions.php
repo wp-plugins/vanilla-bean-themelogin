@@ -99,13 +99,15 @@ return;}else{
     }
 }
 
+
 if(!function_exists('\VanillaBeans\vbean_endsWith')) {
     function vbean_endsWith($haystack, $needle) {
     // search forward starting from end minus needle length characters
     $lcneedle = strtolower($needle.'');
     $lchaystack = strtolower($haystack.'');
-    $startindex = strlen($lchaystack) - strlen($lcneedle);
+    $startindex = (strlen($lchaystack) - strlen($lcneedle));
     if($startindex<0 || $startindex>=  strlen($lchaystack)){
+
         return false;
     }
             
@@ -147,4 +149,26 @@ if(!function_exists('\VanillaBeans\vbean_setting')){
             return get_option($name);
         }
     }
+}
+
+if(!function_exists('\VanillaBeans\vbean_urlexists')){
+
+        
+    function vbean_urlexists($url)
+    {
+        $options['http'] = array(
+            'method' => "HEAD",
+            'ignore_errors' => 1,
+            'max_redirects' => 0
+        );
+        try{
+            $body = file_get_contents($url, NULL, stream_context_create($options));
+            sscanf($http_response_header[0], 'HTTP/%*d.%*d %d', $code);
+            return $code === 200;}
+        catch(ErrorException $e){
+            return FALSE;
+        }
+    }        
+    
+    
 }

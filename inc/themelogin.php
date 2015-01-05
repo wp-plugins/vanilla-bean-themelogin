@@ -19,14 +19,61 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 namespace VanillaBeans\ThemeLogin;
 
-function vbean_login_logo() { ?>
+function vbean_login_logo() { 
+    $uri = ''.get_option('vbean_themelogin_logo');
+    if(\VanillaBeans\vbean_urlexists($uri)){?>
     <style type="text/css">
         body.login div#login h1 a {
-            background-image: url(<?php echo get_option('vbean_themelogin_logo')?>);
+            background-image: url(<?php echo($uri)?>);
             padding-bottom: 30px;
         }
     </style>
-<?php }
+    <?php
+    }else{
+        
+        if(\VanillaBeans\vbean_startsWith($uri, 'http') || \VanillaBeans\vbean_endsWith($uri, '.jpg') || \VanillaBeans\vbean_endsWith($uri, '.gif') || \VanillaBeans\vbean_endsWith($uri, '.png') || \VanillaBeans\vbean_endsWith($uri, '.jpeg') || \VanillaBeans\vbean_endsWith($uri, '.jpe') || \VanillaBeans\vbean_endsWith($uri, '.svg')){?>
+     <style type="text/css">
+            body.login div#login h1 a {
+                background-image: none !important;
+                padding-bottom: 10px;
+                text-indent:0 !important;
+            }
+            body.login div#login h1{display:none !important;}
+            </style>
+            <?php }else{ ?>
+        <style type="text/css">
+            body.login div#login h1 a {
+                background-image: none !important;
+                padding-bottom: 0;
+                text-indent:0 !important;
+            }
+
+            body.login div#login h1 {width:100% !important;}
+            body.login h1 a{
+                width:100% !important;
+                background-size: 100% 114px !important;
+            }
+        </style>
+        <script language="javascript" type="text/javascript">
+            window.onload=function(){
+                    var conti = top.document.getElementById('login');
+                    if(conti!==undefined){
+                        var atag = conti.getElementsByTagName('A');
+                        if(atag!=null&&atag.length>0){
+                            atag[0].innerHTML = <?php echo json_encode($uri)  ?>;
+                        }
+                    }
+                
+            };
+        
+        </script>
+
+
+    <?php }
+    
+            }
+
+}
 
 function vbean_login_logo_url() {
     return home_url();
