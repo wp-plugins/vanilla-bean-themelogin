@@ -21,18 +21,22 @@ namespace VanillaBeans\ThemeLogin;
 
 function vbean_login_logo() { 
     $uri = ''.get_option('vbean_themelogin_logo');
-    if(\VanillaBeans\vbean_urlexists($uri)){?>
-    <style type="text/css">
-        body.login div#login h1 a {
-            background-image: url(<?php echo($uri)?>);
-            padding-bottom: 30px;
-        }
-    </style>
-    <?php
-    }else{
+    
         
-        if(\VanillaBeans\vbean_startsWith($uri, 'http') || \VanillaBeans\vbean_endsWith($uri, '.jpg') || \VanillaBeans\vbean_endsWith($uri, '.gif') || \VanillaBeans\vbean_endsWith($uri, '.png') || \VanillaBeans\vbean_endsWith($uri, '.jpeg') || \VanillaBeans\vbean_endsWith($uri, '.jpe') || \VanillaBeans\vbean_endsWith($uri, '.svg')){?>
-     <style type="text/css">
+        if(\VanillaBeans\vbean_startsWith($uri, 'http') || \VanillaBeans\vbean_endsWith($uri, '.jpg') || \VanillaBeans\vbean_endsWith($uri, '.gif') || \VanillaBeans\vbean_endsWith($uri, '.png') || \VanillaBeans\vbean_endsWith($uri, '.jpeg') || \VanillaBeans\vbean_endsWith($uri, '.jpe') || \VanillaBeans\vbean_endsWith($uri, '.svg')){
+     
+            if(\VanillaBeans\vbean_urlexists($uri)){?>
+                <style type="text/css">
+                    body.login div#login h1 a {
+                        background-image: url(<?php echo($uri)?>);
+                        padding-bottom: 30px;
+                    }
+                </style>
+                <?php
+            }else{ ?>
+
+
+            <style type="text/css">
             body.login div#login h1 a {
                 background-image: none !important;
                 padding-bottom: 10px;
@@ -40,7 +44,10 @@ function vbean_login_logo() {
             }
             body.login div#login h1{display:none !important;}
             </style>
-            <?php }else{ ?>
+            
+          <?php  }
+        }else{ ?>  
+            
         <style type="text/css">
             body.login div#login h1 a {
                 background-image: none !important;
@@ -71,9 +78,9 @@ function vbean_login_logo() {
 
     <?php }
     
-            }
+    }
 
-}
+
 
 function vbean_login_logo_url() {
     return home_url();
