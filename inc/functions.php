@@ -156,18 +156,22 @@ if(!function_exists('\VanillaBeans\vbean_urlexists')){
         
     function vbean_urlexists($url)
     {
-        $options['http'] = array(
-            'method' => "HEAD",
-            'ignore_errors' => 1,
-            'max_redirects' => 0
-        );
+        //$url=  str_replace('https', 'http', $url);
+        $file = $url;
         try{
-            $body = file_get_contents($url, NULL, stream_context_create($options));
-            sscanf($http_response_header[0], 'HTTP/%*d.%*d %d', $code);
-            return $code === 200;}
-        catch(ErrorException $e){
+            $file_headers = @get_headers($file);
+        } catch (Exception $ex) {
             return FALSE;
         }
+
+        
+        if($file_headers[0] == 'HTTP/1.1 200 OK') {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+
     }        
     
     
