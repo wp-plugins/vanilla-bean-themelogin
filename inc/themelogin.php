@@ -18,6 +18,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 namespace VanillaBeans\ThemeLogin;
+            // If this file is called directly, abort.
+            if ( ! defined( 'WPINC' ) ) {
+                    die;
+            }
 
 function vbean_login_logo() { 
     $uri = ''.get_option('vbean_themelogin_logo');

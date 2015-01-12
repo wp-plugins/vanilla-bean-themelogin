@@ -51,15 +51,15 @@ if(function_exists('\VanillaBeans\vanillabeans_settings')){
      }?>
         <div class="small-text">Themify your login and password recovery pages.</div>
     </li>
-<!--    <li>
-    <?php if(defined( 'VBEANICONSETTER_PLUGIN_VERSION' )){ 
-       echo('<a href="'.admin_url().'admin.php?page='.VBEANICONSETTER_PLUGIN_DIR.'/'.VBEANICONSETTER_PLUGIN_FILE.'">Icon Setter</a> (installed)');
+   <li>
+    <?php if(defined( 'VBEANFAVICON_PLUGIN_VERSION' )){ 
+       echo('<a href="'.admin_url().'admin.php?page='.VBEANFAVICON_PLUGIN_DIR.'/'.VBEANFAVICON_PLUGIN_FILE.'">Icon Setter</a> (installed)');
     }else {
         echo('<a href="'.admin_url().'plugin-install.php?tab=search&type=term&s=vanilla+bean+icon+setter">Icon Setter</a>');
      }?>
         <div class="small-text">Add your site's icon to each page, and across all devices.</div>
 
-    </li>-->
+    </li>
 </ul>
 
 </div>
