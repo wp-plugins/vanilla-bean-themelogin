@@ -1,0 +1,82 @@
+<?php
+/*
+Plugin Name: Vanilla Bean - Custom Login
+Plugin URI: http://www.velvary.com.au/vanilla-beans/wordpress/theme-login/
+Description: Provides easy access to change your login screen layout and logo to match your theme. Vanilla Beans for Wordpress by Velvary
+Version: 1.53
+Author: Mark Pottie <mark@velvary.com.au>
+Author URI: http://www.velvary.com.au
+License: GPLv2
+*/
+
+
+            // If this file is called directly, abort.
+            if ( ! defined( 'WPINC' ) ) {
+                    die;
+            }
+
+            if ( !defined( 'VBEANTHEMELOGIN_PLUGIN_DIR' ) ) {
+                    define( 'VBEANTHEMELOGIN_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+            }
+            if ( !defined( 'VBEANTHEMELOGIN_PLUGIN_URL' ) ) {
+                    define( 'VBEANTHEMELOGIN_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+            }
+            if ( !defined( 'VBEANTHEMELOGIN_PLUGIN_FILE' ) ) {
+                    define( 'VBEANTHEMELOGIN_PLUGIN_FILE', __FILE__ );
+            }
+            if ( !defined( 'VBEANTHEMELOGIN_PLUGIN_VERSION' ) ) {
+                    define( 'VBEANTHEMELOGIN_PLUGIN_VERSION', '1.53' );
+            }
+
+            /*===========================================
+                    Define Includes
+            ===========================================*/
+            $includes = array(
+                'functions.php'
+            );
+
+            $frontend_includes = array(
+                'themelogin.php'
+            );
+
+
+            $adminincludes= array(
+                'settings.php'
+            );
+
+            /*===========================================
+                    Load Includes
+            ===========================================*/
+            // Common
+            foreach ( $includes as $include ) {
+                    require_once( dirname( __FILE__ ) . '/inc/'. $include );
+            }
+            if(is_admin()){		
+            //load admin part
+                foreach ( $adminincludes as $admininclude ) {
+                    require_once( dirname( __FILE__ ) . '/inc/admin/'. $admininclude );
+                }
+            }else{
+            //load front part
+                foreach ( $frontend_includes as $include ) {
+                        require_once( dirname( __FILE__ ) . '/inc/'. $include );
+                }
+            }
+
+            add_action('admin_menu', 'vbean_themelogin_create_menu');
+
+            if(!function_exists('vbean_themelogin_create_menu')){
+            
+            function vbean_themelogin_create_menu() {
+
+
+            if ( empty ( $GLOBALS['admin_page_hooks']['vanillabeans-settings'] ) ){
+            //create new top-level menu
+        	add_menu_page('Vanilla Beans', 'Vanilla Beans', 'administrator', 'vanillabeans-settings', 'VanillaBeans\vanillabeans_settings', VBEANTHEMELOGIN_PLUGIN_URL.'vicon.png', 4);
+            }
+            add_submenu_page('vanillabeans-settings', 'Theme Login', 'Theme Login', 'administrator', __FILE__,'VanillaBeans\ThemeLogin\vbean_rendersettings');
+
+                    //call register settings function
+                    add_action( 'admin_init', 'VanillaBeans\Themelogin\RegisterSettings' );
+            }
+            }
