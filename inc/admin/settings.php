@@ -18,6 +18,10 @@
  */
 // upgrade plan to provide autocomplete
 namespace VanillaBeans\ThemeLogin;
+            // If this file is called directly, abort.
+            if ( ! defined( 'WPINC' ) ) {
+                    die;
+            }
 
 function RegisterSettings(){
 	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_override' );

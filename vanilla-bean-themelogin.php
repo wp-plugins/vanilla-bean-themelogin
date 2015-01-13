@@ -3,7 +3,7 @@
 Plugin Name: Vanilla Bean - Custom Login
 Plugin URI: http://www.velvary.com.au/vanilla-beans/wordpress/theme-login/
 Description: Provides easy access to change your login screen layout and logo to match your theme. Vanilla Beans for Wordpress by Velvary
-Version: 1.52
+Version: 1.53
 Author: Mark Pottie <mark@velvary.com.au>
 Author URI: http://www.velvary.com.au
 License: GPLv2
@@ -25,7 +25,7 @@ License: GPLv2
                     define( 'VBEANTHEMELOGIN_PLUGIN_FILE', __FILE__ );
             }
             if ( !defined( 'VBEANTHEMELOGIN_PLUGIN_VERSION' ) ) {
-                    define( 'VBEANTHEMELOGIN_PLUGIN_VERSION', '1.52' );
+                    define( 'VBEANTHEMELOGIN_PLUGIN_VERSION', '1.53' );
             }
 
             /*===========================================

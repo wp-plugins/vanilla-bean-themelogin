@@ -36,7 +36,7 @@ if(function_exists('\VanillaBeans\vanillabeans_settings')){
 <ul>
     <li>
     <?php if(defined( 'VBEANERRORMAILER_PLUGIN_VERSION' )){ 
-        echo('<a href="'.admin_url().'admin.php?page='.VBEANERRORMAILER_PLUGIN_DIR.'/'.VBEANERRORMAILER_PLUGIN_FILE.'">Error Mailer</a> (installed)');
+        echo('<a href="'.admin_url().'admin.php?page=vanilla-bean-errormailer/vanillabean-errormailer.php">Error Mailer</a> (installed)');
     }else{
         echo('<a href="'.admin_url().'plugin-install.php?tab=search&type=term&s=vanilla+bean+error+mailer">Error Mailer</a>');
         
@@ -45,7 +45,7 @@ if(function_exists('\VanillaBeans\vanillabeans_settings')){
     </li>
     <li>
     <?php if(defined( 'VBEANTHEMELOGIN_PLUGIN_VERSION' )){ 
-        echo('<a href="'.admin_url().'admin.php?page='.VBEANTHEMELOGIN_PLUGIN_DIR.'/'.VBEANTHEMELOGIN_PLUGIN_FILE.'">Theme Login</a> (installed)');
+        echo('<a href="'.admin_url().'admin.php?page=vanilla-bean-themelogin/vanilla-bean-themelogin.php">Theme Login</a> (installed)');
         }else {
         echo('<a href="'.admin_url().'plugin-install.php?tab=search&type=term&s=vanilla+bean+theme+login">Theme Login</a>');
      }?>
@@ -53,7 +53,7 @@ if(function_exists('\VanillaBeans\vanillabeans_settings')){
     </li>
    <li>
     <?php if(defined( 'VBEANFAVICON_PLUGIN_VERSION' )){ 
-       echo('<a href="'.admin_url().'admin.php?page='.VBEANFAVICON_PLUGIN_DIR.'/'.VBEANFAVICON_PLUGIN_FILE.'">Icon Setter</a> (installed)');
+       echo('<a href="'.admin_url().'admin.php?page=vanilla-bean-icon-setter/vanilla-bean-icon-setter.php">Icon Setter</a> (installed)');
     }else {
         echo('<a href="'.admin_url().'plugin-install.php?tab=search&type=term&s=vanilla+bean+icon+setter">Icon Setter</a>');
      }?>
@@ -158,6 +158,9 @@ if(!function_exists('\VanillaBeans\vbean_urlexists')){
     {
         //$url=  str_replace('https', 'http', $url);
         $file = $url;
+        if(empty($file)){
+            return FALSE;
+        }
         try{
             $file_headers = @get_headers($file);
         } catch (Exception $ex) {

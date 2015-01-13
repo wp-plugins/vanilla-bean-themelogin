@@ -16,6 +16,9 @@ Provides easy access to change your login screen layout and logo
 Standard wordpress plugin installation
 
 == Changelog ==
+= 1.53 =
+Common functions update to catch email exceptions
+
 = 1.52 =
 Common functions update
 
