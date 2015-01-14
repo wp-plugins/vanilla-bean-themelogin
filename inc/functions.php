@@ -101,6 +101,283 @@ if(!function_exists('\VanillaBeans\LiveSettings')){
 	$api = plugins_api( "query_plugins", $arges );
 	$item = $api->plugins;
 	?>
+<style>
+  .fluid-layout [class*="layout-span"]:first-child {
+margin-left: 0;
+}
+
+.fluid-layout .layout-span12 {
+width: 100%;
+}
+
+.fluid-layout [class*="layout-span"] {
+display: block;
+float: left;
+min-height: 30px;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+
+.widget-layout 
+{
+    background: none repeat scroll 0 0 #F9F9F9;
+    border-top: 1px solid #e0dede;
+    border-left: 1px solid #e0dede;
+    border-right: 1px solid #e0dede;
+    clear: both;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-bottom: 1px solid #CDCDCD;
+    -webkit-border-radius: 0px 0px 3px 3px;
+    -moz-border-radius: 0px 0px 3px 3px;
+    border-radius: 0px 0px 3px 3px;
+}
+
+.widget-layout-title 
+{
+    background-color: #EFEFEF;
+    background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FDFDFD), to(#EAEAEA));
+    background-image: -webkit-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -moz-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -ms-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -o-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#eaeaea', GradientType=0);
+    border-bottom: 1px solid #e0dede;
+    height: 36px;
+
+    -webkit-border-radius: 3px 3px 0px 0px;
+    -moz-border-radius: 3px 3px 0px 0px;
+    border-radius: 3px 3px 0px 0px;
+}
+
+
+.widget-layout-title > h4 
+{
+    color: #444;
+    float: left;
+    font-size: 13px;
+    
+    padding: 12px 11px 10px 15px;
+    line-height: 12px;
+    margin: 0px !important;
+}
+
+.widget-layout-title > h4 i 
+{
+    font-size: 14px;
+    margin-right: 6px !important;
+
+}
+
+.widget-layout-title span.tools 
+{
+    padding: 3px 5px 2px;
+    float: right;
+    margin: 6px 0px 0 0 !important;
+    cursor: pointer;
+}
+
+.widget-layout-title span.tools > a 
+{
+    display: inline-block;
+    margin-right: 5px !important;
+    color: #555;
+    font-size: 14px;
+}
+
+.widget-layout-title span.tools > a:hover 
+{
+    text-decoration: none;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    opacity: .6;
+}
+
+.widget-layout-title .btn-group 
+{
+    margin-right: 5px !important;
+    margin-top: -2px !important;
+}
+
+.widget-layout-title .btn-group .caret 
+{
+    margin-top: 8px !important;
+    margin-left: 3px !important;
+}
+
+.widget-layout-body 
+{
+    padding: 10px 15px;
+    position:relative;
+    display:inline-block;
+}
+
+.plugin-div 
+{
+	float: left;
+	margin: 0 8px 16px;
+	width: 48.5%;
+	width: -webkit-calc(50% - 8px);
+	width: calc(50% - 8px);
+	background-color: #fff;
+	border: 1px solid #dedede;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+.plugin-div:nth-child(odd) 
+{
+	clear: both;
+	margin-left: 0
+}
+
+.plugin-div:nth-child(even) 
+{
+	margin-right: 0
+}
+
+@media screen and (max-width:782px) 
+{
+	.plugin-card {
+		margin-left: 0;
+		margin-right: 0;
+		width: 100%
+	}
+}
+
+.plugin-div-top 
+{
+	position: relative;
+	padding: 20px 20px 10px;
+	min-height:200px;
+}
+.plugin-div-inner-content
+{
+	min-height:150px;
+}
+.plugin-action-buttons, div.action-links 
+{
+	margin: 0
+}
+.plugin-div h4 {
+	margin: 0 0 12px;
+	font-size: 16px;
+	line-height: 1.3
+}
+
+.plugin-div .desc, .plugin-div .name
+ {
+	margin-left: 148px;
+	
+}
+
+.plugin-div .action-links 
+{
+
+}
+.plugin-div-button 
+{
+	margin-left: 5px !important;
+}
+.plugin-div-settings 
+{
+	display:inline-block;
+	margin: 0 0px 16px;
+	width: 48.5%;
+    width: -webkit-calc(50% - 8px);
+    width: calc(50% - 8px);
+	background-color: #FAFAFA;
+	border: 1px solid #dedede;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	vertical-align: top;
+	min-height: 330px;
+}
+
+.plugin-div-settings:nth-child(odd)
+{
+	clear: both;
+	margin-left: 0
+}
+
+.plugin-div-settings:nth-child(even) 
+{
+	margin-right: 0;
+	margin-left: 8px;
+	
+}
+
+
+.plugin-div-settings-top 
+{
+	position: relative;
+	padding: 20px 20px 10px;
+	background-color: #fff;
+}
+
+.plugin-action-buttons, div.action-links 
+{
+	margin: 0
+}
+.plugin-div-settings h4 
+{
+	margin: 0 0 12px;
+	font-size: 16px;
+	line-height: 1.3
+}
+
+.plugin-div-settings .desc, .plugin-div-settings .name 
+{
+	margin-left: 148px;
+	
+}
+
+.plugin-div-settings-button 
+{
+	margin-left: 5px !important;
+
+}
+.plugin-card-bottom_settings 
+{
+	clear: both;
+	padding: 8px 20px;
+	background-color: #fafafa;
+	overflow: hidden;
+	text-align:right;
+	border-top: 1px solid #dedede
+}
+.plugin-icon-custom
+{
+	position: absolute;
+    top: 20px;
+    left: 20px;
+    max-width: 128px;
+    margin: 0px 20px 20px 0px;
+    text-decoration: none;
+    text-align:center;
+}
+.plugin-action-buttons-custom
+{
+	clear: right;
+	margin-left: 2em;
+	margin-bottom: 1em;
+	text-align: right;
+}
+
+</style>
+
+
 	<div class="fluid-layout" style="width:1000px;">
 <h2>Vanilla Beans for Wordpress</h2>
 <p>Vanilla Beans are part of Velvary's ever evolving library of plugins and modules for Wordpress and other Open Source Web Applications.</p>
