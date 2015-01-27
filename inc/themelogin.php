@@ -101,9 +101,9 @@ function vbean_login_stylesheet() {
         foreach ($styles as $css){
             if(\VanillaBeans\vbean_endsWith($css, '.css')){
                 if(get_option('vbean_themelogin_cssfilesrelative')){
-                    wp_enqueue_style( 'custom-login', get_template_directory_uri() . $css );
+                    wp_enqueue_style( 'custom-login', get_template_directory_uri() . $css, 10 );
                 }else{
-                    wp_enqueue_style( 'custom-login', $css);
+                    wp_enqueue_style( 'custom-login', $css, 10);
                 }
             }
         }
@@ -112,10 +112,37 @@ function vbean_login_stylesheet() {
 }
 
 function vbean_login_styles() {
+    $bg = ''.get_option('vbean_themelogin_background');
+    if(\VanillaBeans\vbean_endsWith($bg, '.jpg') || \VanillaBeans\vbean_endsWith($bg, '.gif') || \VanillaBeans\vbean_endsWith($bg, '.png') || \VanillaBeans\vbean_endsWith($bg, '.jpeg') || \VanillaBeans\vbean_endsWith($bg, '.jpe') || \VanillaBeans\vbean_endsWith($bg, '.svg')){
+        $repeat=\VanillaBeans\vbean_setting('vbean_themelogin_bglayout','repeat');
+        $fixed='inherit';
+        if((string)get_option('vbean_themelogin_background_fixed')==='1'){
+            $fixed='fixed';
+        }
+        $bgwidth = get_option('vbean_themelogin_bg_width');
+        $bgheight = get_option('vbean_themelogin_bg_height');
+        $bgwunit = get_option('vbean_themelogin_bg_width_unit');
+        $bghunit = get_option('vbean_themelogin_bg_height_unit');
+        
+        // start the string
+        
+        $s = 'body.login { background-image : URL('.$bg.'); background-repeat:'.$repeat.'; background-attachment: '.$fixed.';';
+        if(is_numeric($bgwidth)){
+            $s.='background-size: '.$bgwidth.  str_replace('percent', '%', $bgwunit);
+            if(is_int($bgheight)){
+                $s.=' '.$bgheight.  str_replace('percent', '%', $bghunit);
+            }
+            $s.=';';
+        }
+        $s.='}';
+    }
+    
+    
     $css = get_option('vbean_themelogin_css');
  ?>
     <style type="text/css">
         <?php echo $css ?>
+        <?php echo $s; ?>
     </style>
 <?php    
 }

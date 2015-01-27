@@ -606,22 +606,42 @@ if(!function_exists('\VanillaBeans\vbean_startsWith')) {
 
 if(!function_exists('\VanillaBeans\vbean_setting')){
     // returns a default val if get_option is empty
-    function vbean_setting($name,$default){
-        $sval = get_option($name);
-        if(!isset($sval)||empty($sval)){
+    function vbean_setting($name,$default, $setit=FALSE){
+        if(get_option($name)===FALSE){
+            if($setit){
+                    $deprecated = null;
+                    $autoload = 'no';
+                    add_option( $name, $default, $deprecated, $autoload );
+                }
                 return $default;
+            
         }else{
-            return get_option($name);
+            $val = get_option($name);
+            if(empty($val)){
+                if($setit){
+                        update_option( $name, $default);
+                    }
+                    return $default;
+            }else{
+                return $val;
+            }
         }
     }
-}
 
-if(!function_exists('\VanillaBeans\vbean_setting')){
+    
+    
+        }
+
+if(!function_exists('\VanillaBeans\vbean_textsetting')){
     // returns default if get_option not set, but returns empty if get_option is empty
-    function vbean_textsetting($name,$default){
-        $sval = get_option($name);
-        if(!isset($sval)){
-                return $default;
+    function vbean_textsetting($name,$default, $setit=FALSE){
+       if(get_option($name)===FALSE){
+            if($setit){
+                $deprecated = null;
+                $autoload = 'no';
+                add_option( $name, $default, $deprecated, $autoload );
+                }
+            return $default;
         }else{
             return get_option($name);
         }
