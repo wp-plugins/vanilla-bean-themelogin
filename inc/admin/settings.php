@@ -30,6 +30,16 @@ function RegisterSettings(){
 	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_css' );
 	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_cssfiles' );
 	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_cssfilesrelative' );
+	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_background' );
+	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_bglayout' );
+	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_background_fixed' );
+	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_bg_width' );
+	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_bg_width_unit' );
+	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_bg_height' );
+	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_bg_height_unit' );
+	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_maskit' );
+	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_mask' );
+	register_setting( 'vbean-themelogin-settings', 'vbean_themelogin_bg_colour' );
 }
 
 
@@ -51,7 +61,30 @@ function vbean_themelogin_admin_styles() {
 function vbean_rendersettings(){
     ?>
 
-
+<style>
+    .statuscolour{
+        
+    }
+    .colourbox{
+        position:relative;
+        display:inline-block;
+        width:100px;
+    }
+    .colourboxes{
+        position:relative;
+        display:inline-block;
+    }
+</style>
+<script language="javascript" type="text/javascript" >
+    jQuery(document).ready(function(){
+        jQuery(".statuscolour").spectrum({
+            showInput: true,
+            preferredFormat: "hex",
+            allowEmpty:true
+        });
+        
+    });
+</script>
 
         <div class="wrap">
         <h2>Vanilla Bean Custom Login Settings</h2>
@@ -75,7 +108,7 @@ function vbean_rendersettings(){
                     </tr>
 
                     <tr valign="top">
-                            <td>Logo</td>
+                            <th>Logo</th>
                             <td><label for="upload_image">
                                     <input id="vbean_themelogin_logo" type="text" size="36" name="vbean_themelogin_logo" value="<?php echo  \VanillaBeans\vbean_setting('vbean_themelogin_logo',''); ?>" />
                                     <input id="upload_image_button" type="button" value="Choose Logo" />
@@ -85,7 +118,41 @@ function vbean_rendersettings(){
                     </tr>                
                 
                     <tr valign="top">
-                            <td>CSS Override</td>
+                            <th>Page Background</th>
+                            <td><label for="upload_image">
+                                    <input id="vbean_themelogin_background" type="text" size="36" style="width:300px;" name="vbean_themelogin_background" value="<?php echo  \VanillaBeans\vbean_setting('vbean_themelogin_background',''); ?>" />
+                                    <input id="upload_background_button" type="button" value="Choose Background" /></label>
+                                    <select name="vbean_themelogin_bglayout" id="vbean_themelogin_bglayout">
+                                        <option value="no-repeat" <?php if(get_option('vbean_themelogin_bglayout')=='no-repeat'){echo ' SELECTED';} ?>  >Singular</option>
+                                        <option value="repeat" <?php if(get_option('vbean_themelogin_bglayout')=='repeat'){echo ' SELECTED';} ?>  >Tiled</option>
+                                        <option value="repeat-x" <?php if(get_option('vbean_themelogin_bglayout')=='repeat-x'){echo ' SELECTED';} ?>  >Tiled left to right only</option>
+                                        <option value="repeat-y" <?php if(get_option('vbean_themelogin_bglayout')=='repeat-y'){echo ' SELECTED';} ?>  >Tiled top to bottom only</option>
+                                    </select>
+                                    <input type="checkbox" class="checkbox" name="vbean_themelogin_background_fixed"  id="vbean_themelogin_background_fixed" value="1" <?php echo checked(1, get_option('vbean_themelogin_background_fixed'), false)   ?>/>&nbsp;Background should not scroll with page
+                                    <br />Width:<input id="vbean_themelogin_bg_width" type="number" class="number" size="36" style="width:50px;" name="vbean_themelogin_bg_width" value="<?php echo  \VanillaBeans\vbean_setting('vbean_themelogin_bg_width',''); ?>" /><select name="vbean_themelogin_bg_width_unit" id="vbean_themelogin_bg_width_unit">
+                                        <option value="percent" <?php if(get_option('vbean_themelogin_bg_width_unit')=='no-repeat'){echo ' SELECTED';} ?>  >%</option>
+                                        <option value="pixels" <?php if(get_option('vbean_themelogin_bg_width_unit')=='no-repeat'){echo ' SELECTED';} ?>  >pixels</option></select>
+                                        Height:<input id="vbean_themelogin_bg_height" type="number" class="number" size="36" style="width:50px;" name="vbean_themelogin_bg_height" value="<?php echo  \VanillaBeans\vbean_setting('vbean_themelogin_bg_height',''); ?>" /><select name="vbean_themelogin_bg_height_unit" id="vbean_themelogin_bg_height_unit">
+                                        <option value="percent" <?php if(get_option('vbean_themelogin_bg_height_unit')=='no-repeat'){echo ' SELECTED';} ?>  >%</option>
+                                        <option value="pixels" <?php if(get_option('vbean_themelogin_bg_height_unit')=='no-repeat'){echo ' SELECTED';} ?>  >pixels</option>
+                                    </select>
+                                    <br />You may choose an image for the page background, and specify how it looks.
+                                    
+                                    <br />
+                <div class="colourboxes">
+                <div class="colourbox">
+                    <div class="colourtitle" style="width:140px;">Colour: </div>
+                    <input type="text" name="vbean_themelogin_bg_colour" id="vbean_themelogin_bg_colour" value="<?php echo esc_attr(\VanillaBeans\vbean_setting('vbean_themelogin_bg_colour','') ); ?>" class="statuscolour" />
+                </div>
+                                    
+                                    
+                            </td>
+                    </tr>                
+
+                            
+                
+                    <tr valign="top">
+                            <th>CSS Override</th>
                             <td>
                                 <textarea cols="60" rows="6" name="vbean_themelogin_css" id="vbean_themelogin_css"><?php echo get_option('vbean_themelogin_css')?></textarea>
 
@@ -96,7 +163,7 @@ function vbean_rendersettings(){
                     </tr>                
                 
                     <tr valign="top">
-                            <td>CSS files</td>
+                            <th>CSS files</th>
                             <td><input type="checkbox" class="checkbox" name="vbean_themelogin_cssfilesrelative"  id="vbean_themelogin_cssfilesrelative" value="1" <?php echo checked(1, get_option('vbean_themelogin_cssfilesrelative'), false)   ?>/>Relative to theme<br /> 
                                 <textarea cols="60" rows="6" name="vbean_themelogin_cssfiles" id="vbean_themelogin_cssfiles"><?php echo get_option('vbean_themelogin_cssfiles')?></textarea>
 
@@ -175,29 +242,47 @@ function vbean_rendersettings(){
 
 
 <script language="JavaScript">
+    var theformfield;
 jQuery(document).ready(function() {
+    
     jQuery("#vbean_themelogin_css").attr('placeholder',jQuery('#csscodeforlogin').text());
     jQuery("#showstylesbutton").on('click touchend',function(e){
         
         jQuery("#loginstyleshiddendiv").show();
         e.preventDefault();
     });
+    
+    
     jQuery("#hidestylesusedforlogin").on('click touchend',function(e){
         e.preventDefault();
         jQuery("#loginstyleshiddendiv").hide();
     });
+    
+        
+        
     jQuery('#upload_image_button').click(function() {
+        theformfield = '#vbean_themelogin_logo';
         formfield = jQuery('#vbean_themelogin_logo').attr('name');
+        tb_show('', 'media-upload.php?type=image&TB_iframe=true');
+        return false;
+    });
+        
+    jQuery('#upload_background_button').click(function() {
+        theformfield = '#vbean_themelogin_background';
+        formfield = jQuery('#vbean_themelogin_background').attr('name');
         tb_show('', 'media-upload.php?type=image&TB_iframe=true');
         return false;
     });
 
     window.send_to_editor = function(html) {
             imgurl = jQuery('img',html).attr('src');
-            jQuery('#vbean_themelogin_logo').val(imgurl);
+            jQuery(theformfield).val(imgurl);
             tb_remove();
     };
 });
+
+
+
 </script>
 
 <?php            }
