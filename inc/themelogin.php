@@ -159,7 +159,7 @@ if(!function_exists('')){
 if(get_option('vbean_themelogin_override')){
     add_action( 'login_enqueue_scripts', '\VanillaBeans\ThemeLogin\vbean_login_stylesheet' );
     add_action( 'login_enqueue_scripts', '\VanillaBeans\ThemeLogin\vbean_login_logo' );
-//    add_action( 'login_enqueue_scripts', '\VanillaBeans\ThemeLogin\vbean_login_styles' );
-//    add_filter( 'login_headerurl', '\VanillaBeans\ThemeLogin\vbean_login_logo_url' );
-//    add_filter( 'login_headertitle', '\VanillaBeans\ThemeLogin\vbean_login_logo_url_title' );
+    add_action( 'login_enqueue_scripts', '\VanillaBeans\ThemeLogin\vbean_login_styles' );
+    add_filter( 'login_headerurl', '\VanillaBeans\ThemeLogin\vbean_login_logo_url' );
+    add_filter( 'login_headertitle', '\VanillaBeans\ThemeLogin\vbean_login_logo_url_title' );
 }
