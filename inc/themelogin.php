@@ -19,17 +19,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 namespace VanillaBeans\ThemeLogin;
             // If this file is called directly, abort.
-            if ( ! defined( 'WPINC' ) ) {
-                    die;
-            }
 
-function vbean_login_logo() { 
+if(!function_exists('vbean_login_logo')){
+    function vbean_login_logo() { 
     $uri = ''.get_option('vbean_themelogin_logo');
     
         
         if(\VanillaBeans\vbean_startsWith($uri, 'http') || \VanillaBeans\vbean_endsWith($uri, '.jpg') || \VanillaBeans\vbean_endsWith($uri, '.gif') || \VanillaBeans\vbean_endsWith($uri, '.png') || \VanillaBeans\vbean_endsWith($uri, '.jpeg') || \VanillaBeans\vbean_endsWith($uri, '.jpe') || \VanillaBeans\vbean_endsWith($uri, '.svg')){
-     
-            if(\VanillaBeans\vbean_urlexists($uri)){?>
+            
+        
+            
+            ?>
                 <style type="text/css">
                     body.login div#login h1 a {
                         background-image: url(<?php echo($uri)?>);
@@ -37,19 +37,20 @@ function vbean_login_logo() {
                     }
                 </style>
                 <?php
-            }else{ ?>
-
-
-            <style type="text/css">
-            body.login div#login h1 a {
-                background-image: none !important;
-                padding-bottom: 10px;
-                text-indent:0 !important;
-            }
-            body.login div#login h1{display:none !important;}
-            </style>
             
-          <?php  }
+            
+
+
+//            <style type="text/css">
+//            body.login div#login h1 a {
+//                background-image: none !important;
+//                padding-bottom: 10px;
+//                text-indent:0 !important;
+//            }
+//            body.login div#login h1{display:none !important;}
+//            </style>
+            
+          
         }else{ ?>  
             
         <style type="text/css">
@@ -81,20 +82,24 @@ function vbean_login_logo() {
 
 
     <?php }
-    
+    return;
     }
+}
 
-
-
-function vbean_login_logo_url() {
+if(!function_exists('vbean_login_logo_url')){
+    function vbean_login_logo_url() {
     return home_url();
 }
-
-function vbean_login_logo_url_title() {
-    return get_option('vbean_themelogin_sitename');
 }
 
-function vbean_login_stylesheet() {
+if(!function_exists('vbean_login_logo_url_title')){
+    function vbean_login_logo_url_title() {
+    return get_option('vbean_themelogin_sitename').'';
+}
+}
+
+if(!function_exists('vbean_login_stylesheet')){
+    function vbean_login_stylesheet() {
     $styles=  get_option('vbean_themelogin_cssfiles').'';
     if(strlen($styles)>5){
         $styles = explode("\n", $styles); 
@@ -110,8 +115,10 @@ function vbean_login_stylesheet() {
         
     }
 }
+}
 
-function vbean_login_styles() {
+if(!function_exists('')){
+    function vbean_login_styles() {
     $bg = ''.get_option('vbean_themelogin_background');
     if(\VanillaBeans\vbean_endsWith($bg, '.jpg') || \VanillaBeans\vbean_endsWith($bg, '.gif') || \VanillaBeans\vbean_endsWith($bg, '.png') || \VanillaBeans\vbean_endsWith($bg, '.jpeg') || \VanillaBeans\vbean_endsWith($bg, '.jpe') || \VanillaBeans\vbean_endsWith($bg, '.svg')){
         $repeat=\VanillaBeans\vbean_setting('vbean_themelogin_bglayout','repeat');
@@ -146,13 +153,13 @@ function vbean_login_styles() {
     </style>
 <?php    
 }
-
+}
 
 
 if(get_option('vbean_themelogin_override')){
     add_action( 'login_enqueue_scripts', '\VanillaBeans\ThemeLogin\vbean_login_stylesheet' );
     add_action( 'login_enqueue_scripts', '\VanillaBeans\ThemeLogin\vbean_login_logo' );
-    add_action( 'login_enqueue_scripts', '\VanillaBeans\ThemeLogin\vbean_login_styles' );
-    add_filter( 'login_headerurl', '\VanillaBeans\ThemeLogin\vbean_login_logo_url' );
-    add_filter( 'login_headertitle', '\VanillaBeans\ThemeLogin\vbean_login_logo_url_title' );
+//    add_action( 'login_enqueue_scripts', '\VanillaBeans\ThemeLogin\vbean_login_styles' );
+//    add_filter( 'login_headerurl', '\VanillaBeans\ThemeLogin\vbean_login_logo_url' );
+//    add_filter( 'login_headertitle', '\VanillaBeans\ThemeLogin\vbean_login_logo_url_title' );
 }

@@ -4,7 +4,7 @@ Donate link: http://www.velvary.com.au/wordpress/theme-login
 Tags: Custom Login, Theme login, override default login page, login layout, password recovery
 Requires at least: 4.0
 Tested up to: 4.1
-Stable tag: 2.01
+Stable tag: 2.02
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,9 @@ Provides easy access to change your login screen layout and logo
 Standard wordpress plugin installation
 
 == Changelog ==
+= 2.02 =
+removed double check for existing logo image (causing a hang in certain versions of php)
+
 = 2.01 =
 Added admin options for:
 * login background page image
