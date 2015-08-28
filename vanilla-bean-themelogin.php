@@ -3,8 +3,8 @@
 Plugin Name: Vanilla Bean - Custom Login
 Plugin URI: http://www.velvary.com.au/vanilla-beans/wordpress/theme-login/
 Description: Provides easy access to change your login screen layout and logo to match your theme. Vanilla Beans for Wordpress by Velvary
-Version: 2.06
-Author: Mark Pottie <mark@velvary.com.au>
+Version: 2.10
+Author: vsmash
 Author URI: http://www.velvary.com.au
 License: GPLv2
 */
@@ -25,7 +25,7 @@ License: GPLv2
                     define( 'VBEANTHEMELOGIN_PLUGIN_FILE', __FILE__ );
             }
             if ( !defined( 'VBEANTHEMELOGIN_PLUGIN_VERSION' ) ) {
-                    define( 'VBEANTHEMELOGIN_PLUGIN_VERSION', '2.06' );
+                    define( 'VBEANTHEMELOGIN_PLUGIN_VERSION', '2.10' );
             }
 
             /*===========================================
@@ -52,10 +52,11 @@ License: GPLv2
             }
             if(is_admin()){		
             //load admin part
+                
+                add_action('admin_init','vbean_themelogin_colourpicker');
                 foreach ( $adminincludes as $admininclude ) {
                     require_once( dirname( __FILE__ ) . '/inc/admin/'. $admininclude );
                 }
-                add_action('admin_init','vbean_load_colourpicker');
                 
                 }else{
             //load front part
@@ -84,22 +85,22 @@ License: GPLv2
             
             
             
-            if(!function_exists('vbean_load_colourpicker')){
-            function vbean_load_colourpicker(){
+            if(!function_exists('vbean_themelogin_colourpicker')){
+            function vbean_themelogin_colourpicker(){
                 wp_register_style(
-                'colorpicker-styles', // handle name
+                'vbean-themelogin-colorpicker-styles', // handle name
                 plugins_url('/inc/assets/spectrum.css', __FILE__), // the URL of the stylesheet
                 array( ), // an array of dependent styles
                 'screen' // CSS media type
                 );
-    
+                wp_register_script( 'vbean-themelogin-colorpicker', plugins_url( '/inc/assets/spectrum.js', __FILE__ ),
+                    array( 'jquery' ) );    
                 wp_enqueue_script(
-		'vbean-colorpicker',
-                plugins_url('/inc/assets/spectrum.js', __FILE__),
-		array( 'jquery' )
+		'vbean-themelogin-colorpicker'
                 );
-                wp_enqueue_style( 'colorpicker-styles' );  
+                wp_enqueue_style( 'vbean-themelogin-colorpicker-styles' );  
             }
+            }else{
             }
     
         
