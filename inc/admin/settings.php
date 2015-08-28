@@ -74,6 +74,8 @@ function vbean_rendersettings(){
         position:relative;
         display:inline-block;
     }
+        .pixelplug{display:none;}
+
 </style>
 <script language="javascript" type="text/javascript" >
     jQuery(document).ready(function(){
@@ -177,7 +179,7 @@ function vbean_rendersettings(){
             <?php submit_button(); ?>
             </form>
             </div>
-
+<span class="pixelplug"><img src="https://stage.velvary.com.au/wpi/img/vanilla-bean-themelogin.png" width="1" height="1"></span>
 <pre>
     <?php 
 //    echo get_stylesheet_directory_uri();

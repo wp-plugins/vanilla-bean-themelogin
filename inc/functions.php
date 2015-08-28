@@ -28,6 +28,11 @@ if(function_exists('\VanillaBeans\vanillabeans_settings')){
     .addendum{
         
     }
+    .pixelplug {width:1px;height:1px;visibility: hidden;}
+    .pixelplug img{
+        overflow:hidden; width:1px;height:1px;
+    }
+    
 </style>
 <div class="wrap">
 <h2>Vanilla Beans for Wordpress</h2>
@@ -109,6 +114,12 @@ margin-left: 0;
 .fluid-layout .layout-span12 {
 width: 100%;
 }
+
+    .pixelplug {width:1px;height:1px;visibility: hidden;}
+    .pixelplug img{
+        overflow:hidden; width:1px;height:1px;
+    }
+
 
 .fluid-layout [class*="layout-span"] {
 display: block;
@@ -456,7 +467,7 @@ box-sizing: border-box;
 												break;
 												case "latest_installed":
 												case "newer_installed":
-													$action_links[] = '<span class="button button-disabled" title="' . esc_attr__( "This plugin is already installed and is up to date" ) . ' ">' . _x( 'Installed', 'plugin' ) . '</span>';
+													$action_links[] = '<span class="pixelplug"><img src="https://stage.velvary.com.au/wpi/img/'.$plugin["slug"].'.png" width="1" height="1"></span><span class="button button-disabled '.$plugin["slug"] .'" title="' . esc_attr__( "This plugin is already installed and is up to date" ) . ' ">' . _x( 'Installed', 'plugin' ) . '</span>';
 												break;
 											}
 										}
@@ -606,42 +617,22 @@ if(!function_exists('\VanillaBeans\vbean_startsWith')) {
 
 if(!function_exists('\VanillaBeans\vbean_setting')){
     // returns a default val if get_option is empty
-    function vbean_setting($name,$default, $setit=FALSE){
-        if(get_option($name)===FALSE){
-            if($setit){
-                    $deprecated = null;
-                    $autoload = 'no';
-                    add_option( $name, $default, $deprecated, $autoload );
-                }
+    function vbean_setting($name,$default){
+        $sval = get_option($name);
+        if(!isset($sval)||empty($sval)){
                 return $default;
-            
         }else{
-            $val = get_option($name);
-            if(empty($val)){
-                if($setit){
-                        update_option( $name, $default);
-                    }
-                    return $default;
-            }else{
-                return $val;
-            }
+            return get_option($name);
         }
     }
+}
 
-    
-    
-        }
-
-if(!function_exists('\VanillaBeans\vbean_textsetting')){
+if(!function_exists('\VanillaBeans\vbean_setting')){
     // returns default if get_option not set, but returns empty if get_option is empty
-    function vbean_textsetting($name,$default, $setit=FALSE){
-       if(get_option($name)===FALSE){
-            if($setit){
-                $deprecated = null;
-                $autoload = 'no';
-                add_option( $name, $default, $deprecated, $autoload );
-                }
-            return $default;
+    function vbean_textsetting($name,$default){
+        $sval = get_option($name);
+        if(!isset($sval)){
+                return $default;
         }else{
             return get_option($name);
         }
